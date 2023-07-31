@@ -16,8 +16,6 @@ builder.Services.AddDbContext<Context>(options =>
 
 builder.Services.AddScoped<ITaskService, TaskService>();
 
-builder.Services.AddScoped<ITaskRepository, TaskRepository>();
-
 builder.Services.AddSingleton<ITaskRepository, TaskRepository>();
 
 // * --- auto generated --------------------------------------------------- * //
