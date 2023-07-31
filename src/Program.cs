@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TodoList.Infra;
+using TodoList.Infra.Repositories;
+using TodoList.Infra.Repositories.Interfaces;
 using TodoList.Services;
 using TodoList.Services.Interfaces;
 
@@ -13,6 +15,8 @@ builder.Services.AddDbContext<Context>(options =>
 // *** --- dependencies ------------------------------------------------- *** //
 
 builder.Services.AddScoped<ITaskService, TaskService>();
+
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 
 // * --- auto generated --------------------------------------------------- * //
 
