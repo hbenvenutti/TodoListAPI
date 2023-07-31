@@ -1,16 +1,17 @@
 using TodoList.Dtos.Tasks;
+using TodoList.Models;
 
 namespace TodoList.Services.Interfaces;
 
 public interface ITaskService
 {
-    IEnumerable<Task> List();
+    IEnumerable<TaskModel> List();
 
-    Task? FindById(int id);
+    TaskModel? FindById(int id);
 
-    Task Create(CreateTaskDto dto);
+    TaskModel Create(CreateTaskDto dto);
 
-    Task Update(Task task);
+    TaskModel Update(UpdateTaskDto dto);
 
     void Delete(int id);
 }

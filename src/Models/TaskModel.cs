@@ -1,6 +1,6 @@
 namespace TodoList.Models;
 
-public class Task
+public class TaskModel
 {
     public required int ID { get; set; }
     

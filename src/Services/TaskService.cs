@@ -1,11 +1,15 @@
 using TodoList.Dtos.Tasks;
 using TodoList.Services.Interfaces;
+using TodoList.Models;
 
 namespace TodoList.Services;
 
 public class TaskService : ITaskService
 {
-    public Task Create(CreateTaskDto dto)
+
+    // *** --- methods -------------------------------------------------- *** //
+
+    public TaskModel Create(CreateTaskDto dto)
     {
         throw new NotImplementedException();
     }
@@ -15,17 +19,17 @@ public class TaskService : ITaskService
         throw new NotImplementedException();
     }
 
-    public Task? FindById(int id)
+    public TaskModel? FindById(int id)
     {
         throw new NotImplementedException();
     }
 
-    public IEnumerable<Task> List()
+    public IEnumerable<TaskModel> List()
     {
         throw new NotImplementedException();
     }
 
-    public Task Update(Task task)
+    public TaskModel Update(UpdateTaskDto dto)
     {
         throw new NotImplementedException();
     }
