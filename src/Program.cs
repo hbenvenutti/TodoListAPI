@@ -18,6 +18,8 @@ builder.Services.AddScoped<ITaskService, TaskService>();
 
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 
+builder.Services.AddSingleton<ITaskRepository, TaskRepository>();
+
 // * --- auto generated --------------------------------------------------- * //
 
 builder.Services.AddControllers();

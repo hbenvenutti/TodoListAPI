@@ -5,28 +5,55 @@ namespace TodoList.Infra.Repositories;
 
 public class TaskRepository : ITaskRepository
 {
-    public TaskModel Create(TaskModel task)
+    private readonly Context _context;
+
+    // *** --- constructors --------------------------------------------- *** //
+
+    public TaskRepository(Context context)
     {
-        throw new NotImplementedException();
+        _context = context;
+
+        return;
     }
 
-    public void Delete(int id)
+    // *** --- methods -------------------------------------------------- *** //
+
+    public TaskModel Create(TaskModel task)
     {
-        throw new NotImplementedException();
+        _context.Tasks.Add(task);
+
+        _context.SaveChanges();
+
+        return task;
+    }
+
+    public void Delete(TaskModel task)
+    {
+        _context.Tasks.Remove(task);
+
+        _context.SaveChanges();
+
+        return;
     }
 
     public TaskModel? FindById(int id)
     {
-        throw new NotImplementedException();
+        var task = _context.Tasks.Find(id);
+
+        return task;
     }
 
     public IEnumerable<TaskModel> List()
     {
-        throw new NotImplementedException();
+        return _context.Tasks.ToList();
     }
 
     public TaskModel Update(TaskModel task)
     {
-        throw new NotImplementedException();
+       _context.Tasks.Update(task);
+
+       _context.SaveChanges();
+
+       return task;
     }
 }

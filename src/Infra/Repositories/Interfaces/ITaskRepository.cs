@@ -6,7 +6,7 @@ public interface ITaskRepository
 {
     TaskModel Create(TaskModel task);
 
-    void Delete(int id);
+    void Delete(TaskModel task);
 
     TaskModel? FindById(int id);
 
