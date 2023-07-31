@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TodoList.Infra;
 using TodoList.Services;
+using TodoList.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,7 @@ builder.Services.AddDbContext<Context>(options =>
 
 // *** --- dependencies ------------------------------------------------- *** //
 
-builder.Services.AddScoped<TaskService>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 
 // * --- auto generated --------------------------------------------------- * //
 
