@@ -2,28 +2,39 @@ using Microsoft.EntityFrameworkCore;
 using TodoList.Infra;
 using TodoList.Infra.Repositories;
 using TodoList.Infra.Repositories.Interfaces;
+using TodoList.Providers.Mapper;
 using TodoList.Services;
 using TodoList.Services.Interfaces;
 
+// * ---------------------------------------------------------------------- * //
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var services = builder.Services;
 
-builder.Services.AddDbContext<Context>(options =>
+// *** --- database ---------------------------------------------------- *** //
+
+services.AddDbContext<Context>(options =>
     options.UseInMemoryDatabase("TodoList"));
+
+// *** --- mappers ----------------------------------------------------- *** //
+
+services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+services.AddScoped<IMapperProvider, Mapper>();
 
 // *** --- dependencies ------------------------------------------------- *** //
 
-builder.Services.AddScoped<ITaskService, TaskService>();
+services.AddScoped<ITaskService, TaskService>();
 
-builder.Services.AddSingleton<ITaskRepository, TaskRepository>();
+services.AddSingleton<ITaskRepository, TaskRepository>();
 
 // * --- auto generated --------------------------------------------------- * //
 
-builder.Services.AddControllers();
+services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+services.AddEndpointsApiExplorer();
+services.AddSwaggerGen();
 
 var app = builder.Build();
 
