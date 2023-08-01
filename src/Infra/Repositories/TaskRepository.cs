@@ -16,7 +16,7 @@ public class TaskRepository : ITaskRepository
         return;
     }
 
-    // *** --- methods -------------------------------------------------- *** //
+    // *** --- public methods ------------------------------------------- *** //
 
     public TaskModel Create(TaskModel task)
     {
@@ -27,6 +27,8 @@ public class TaskRepository : ITaskRepository
         return task;
     }
 
+    // ---------------------------------------------------------------------- //
+
     public void Delete(TaskModel task)
     {
         _context.Tasks.Remove(task);
@@ -36,6 +38,8 @@ public class TaskRepository : ITaskRepository
         return;
     }
 
+    // ---------------------------------------------------------------------- //
+
     public TaskModel? FindById(int id)
     {
         var task = _context.Tasks.Find(id);
@@ -43,10 +47,14 @@ public class TaskRepository : ITaskRepository
         return task;
     }
 
+    // ---------------------------------------------------------------------- //
+
     public IEnumerable<TaskModel> List()
     {
         return _context.Tasks.ToList();
     }
+
+    // ---------------------------------------------------------------------- //
 
     public TaskModel Update(TaskModel task)
     {
