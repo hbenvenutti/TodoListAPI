@@ -23,6 +23,9 @@ public class Mapper : IMapperProvider
 
     public TaskModel Map(UpdateTaskDto dto) => _mapper.Map<TaskModel>(dto);
 
+    public TaskModel Map(UpdateTaskDto dto, TaskModel task) =>
+        _mapper.Map(dto, task);
+
     public ResponseTaskDto Map(TaskModel task) => 
         _mapper.Map<ResponseTaskDto>(task);
 

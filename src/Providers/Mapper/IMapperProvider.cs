@@ -1,4 +1,3 @@
-
 using TodoList.Dtos.Tasks;
 using TodoList.Models;
 
@@ -9,6 +8,8 @@ public interface IMapperProvider
     TaskModel Map(CreateTaskDto dto);
 
     TaskModel Map(UpdateTaskDto dto);
+
+    TaskModel Map(UpdateTaskDto dto, TaskModel task);
 
     ResponseTaskDto Map(TaskModel task);
 
