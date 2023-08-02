@@ -1,36 +1,88 @@
 using TodoList.Dtos.Tasks;
 using TodoList.Services.Interfaces;
 using TodoList.Models;
+using TodoList.Infra.Repositories.Interfaces;
+using TodoList.Providers.Mapper;
+using TodoList.Errors;
+
+// * ---------------------------------------------------------------------- * //
 
 namespace TodoList.Services;
 
 public class TaskService : ITaskService
 {
+    private readonly ITaskRepository _repository;
+    private readonly IMapperProvider _mapper;
 
-    // *** --- methods -------------------------------------------------- *** //
+    // *** --- constructors --------------------------------------------- *** //
 
-    public TaskModel Create(CreateTaskDto dto)
+    public TaskService(ITaskRepository repository, IMapperProvider mapper)
     {
-        throw new NotImplementedException();
+        _repository = repository;
+        _mapper = mapper;
+
+        return;
     }
+
+    // *** --- public methods ------------------------------------------- *** //
+
+    public ResponseTaskDto Create(CreateTaskDto dto)
+    {
+        TaskModel task = _mapper.Map(dto);
+
+        task = _repository.Create(task);
+
+        return _mapper.Map(task);
+    }
+
+    // ---------------------------------------------------------------------- //
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        var task = _repository.FindById(id) 
+            ?? throw new TaskNotFoundException();
+        
+        _repository.Delete(task);
+
+        return;
     }
 
-    public TaskModel? FindById(int id)
+    // ---------------------------------------------------------------------- //
+
+    public ResponseTaskDto? FindById(int id)
     {
-        throw new NotImplementedException();
+        var task = _repository.FindById(id)
+            ?? throw new TaskNotFoundException();
+        
+        return _mapper.Map(task);
     }
 
-    public IEnumerable<TaskModel> List()
+    // ---------------------------------------------------------------------- //
+
+    public IEnumerable<ResponseTaskDto> List()
     {
-        throw new NotImplementedException();
+        var tasks = _repository.List();
+
+        return _mapper.Map(tasks);
     }
 
-    public TaskModel Update(UpdateTaskDto dto)
+    // ---------------------------------------------------------------------- //
+
+    public ResponseTaskDto Update(int id, UpdateTaskDto dto)
     {
-        throw new NotImplementedException();
+        var task = _repository.FindById(id);
+
+        if (task is null)
+        {
+            task = _repository.Create(_mapper.Map(dto));
+
+            return _mapper.Map(task);
+        }
+
+        _mapper.Map(dto, task);
+
+        _repository.Update(task);
+        
+        return _mapper.Map(task);
     }
 }

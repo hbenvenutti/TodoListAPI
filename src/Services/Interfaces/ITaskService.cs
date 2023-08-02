@@ -5,13 +5,13 @@ namespace TodoList.Services.Interfaces;
 
 public interface ITaskService
 {
-    IEnumerable<TaskModel> List();
+    IEnumerable<ResponseTaskDto> List();
 
-    TaskModel? FindById(int id);
+    ResponseTaskDto? FindById(int id);
 
-    TaskModel Create(CreateTaskDto dto);
+    ResponseTaskDto Create(CreateTaskDto dto);
 
-    TaskModel Update(UpdateTaskDto dto);
+    ResponseTaskDto Update(int id, UpdateTaskDto dto);
 
     void Delete(int id);
 }
