@@ -27,7 +27,7 @@ services.AddScoped<IMapperProvider, Mapper>();
 
 services.AddScoped<ITaskService, TaskService>();
 
-services.AddSingleton<ITaskRepository, TaskRepository>();
+services.AddScoped<ITaskRepository, TaskRepository>();
 
 // * --- auto generated --------------------------------------------------- * //
 
