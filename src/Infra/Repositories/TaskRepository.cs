@@ -20,6 +20,8 @@ public class TaskRepository : ITaskRepository
 
     public TaskModel Create(TaskModel task)
     {
+        task.CreatedAt = DateTime.Now;
+
         _context.Tasks.Add(task);
 
         _context.SaveChanges();
@@ -64,4 +66,8 @@ public class TaskRepository : ITaskRepository
 
        return task;
     }
+
+    // ---------------------------------------------------------------------- //
+
+    public bool TaskExists(int id) => _context.Tasks.Any(task => task.Id == id);
 }

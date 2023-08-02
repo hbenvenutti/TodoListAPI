@@ -13,4 +13,6 @@ public interface ITaskRepository
     IEnumerable<TaskModel> List();
 
     TaskModel Update(TaskModel task);
+
+    bool TaskExists(int id);
 }
