@@ -2,7 +2,7 @@ namespace TodoList.Dtos.Tasks;
 
 public class ResponseTaskDto
 {
-    public required int ID { get; set; }
+    public required int Id { get; set; }
     
     public required string Title { get; set; }
 
